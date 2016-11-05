@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
 <html>
-
   <head>
+    <meta charset="UTF-8">
     <style>
-
       body {
         display flex;
         background-color: #2dbfff;
@@ -17,13 +16,13 @@
 
       div {
         font-family: Helvetica;
-        padding: 20px;
+        padding: 10px;
         font-size: 30px;
-        }
+      }
 
       div.day {
         display: flex;
-        width: 300px;
+        width: 450px;
         border: 2px solid black;
         border-radius: 10px;
         align-items: center;
@@ -41,44 +40,39 @@
 
   <body>
     <header>
-      <div id="date">
-        10/22/2016
-      </div>
-
-      <div id="location">
-        Flushing, NY
-      </div>
+      <div id="date"></div>
+      <div id="location"></div>
     </header>
 
     <div class="day">
+      <div>Today</div>
       <div>
-        72&#176 F
-      </div>
-
-      <div>
-        <img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" />
+        <div><img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" /></div>
+        <div id="temp1"></div>
       </div>
     </div>
 
     <div class="day">
+      <div>Tomorrow</div>
       <div>
-        67&#176 F
-      </div>
-
-      <div>
-        <img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" />
+        <div><img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" /></div>
+        <div id="temp2"></div>
       </div>
     </div>
+
     <div class="day">
+      <div>The Day After</div>
       <div>
-        80&#176 F
-      </div>
-
-      <div>
-        <img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" />
+        <div><img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" /></div>
+        <div id="temp3"></div>
       </div>
     </div>
 
+    <button id="oops">Don't click me!</button>
+    <button id="refresh">Refresh</button>
+
+    <script src = "Sugar.js"></script>
+    <script src = "app.js"></script>
   </body>
 
 </html>
