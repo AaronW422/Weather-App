@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <style>
       body {
-        display flex;
         background-color: #2dbfff;
+
       }
 
       h1 {
@@ -15,21 +15,24 @@
       }
 
       div {
+        display: flex;
         font-family: Helvetica;
         padding: 10px;
         font-size: 30px;
-      }
-
-      div.day {
-        display: flex;
-        width: 450px;
-        border: 2px solid black;
-        border-radius: 10px;
         align-items: center;
         justify-content: center;
+      }
+
+      div.weatherforday {
+        width: 600px;
         color: yellow;
-        font-size: 80px;
+        border: 2px solid black;
+        border-radius: 10px;
         margin: 20px;
+      }
+
+      div.text {
+        width: 200px;
       }
 
     </style>
@@ -40,36 +43,35 @@
 
   <body>
     <header>
-      <div id="date"></div>
+      <div id="todaysdate"></div>
       <div id="location"></div>
     </header>
 
-    <div class="day">
-      <div>Today</div>
+    <div class= "weatherforday">
+      <div class = "text" id = "date1"></div>
       <div>
         <div><img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" /></div>
-        <div id="temp1"></div>
+        <div class = "text" id = "temp1"></div>
       </div>
     </div>
 
-    <div class="day">
-      <div>Tomorrow</div>
+    <div class="weatherforday">
+      <div class = "text" id = "date2"></div>
       <div>
         <div><img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" /></div>
-        <div id="temp2"></div>
+        <div class = "text" id = "temp2"></div>
       </div>
     </div>
 
-    <div class="day">
-      <div>The Day After</div>
+    <div class="weatherforday">
+      <div class = "text" id = "date3"></div>
       <div>
         <div><img src="http://icon-park.com/imagefiles/simple_weather_icons2_sunny.png" width = 100px alt="Sunny" /></div>
-        <div id="temp3"></div>
+        <div class = "text" id = "temp3"></div>
       </div>
     </div>
 
-    <button id="oops">Don't click me!</button>
-    <button id="refresh">Refresh</button>
+    <button id = "refresh">Refresh</button>
 
     <script src = "Sugar.js"></script>
     <script src = "app.js"></script>
