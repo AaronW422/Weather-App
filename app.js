@@ -1,54 +1,119 @@
 Sugar.extend()
 "use strict"
 
-var button2 = document.getElementById('refresh')
-var day1 = {
-  time: new Date().short(),
-  lowtemp: 54,
-  hitemp: 66,
-  icon: "sunny",
-}
-
-var day2 = {
-  time: new Date().addDays(1).short(),
-  lowtemp: 32,
-  hitemp: 70,
-  icon: "rainy",
-}
-
-var day3 = {
-  time: new Date().addDays(2).short(),
-  lowtemp: -20,
-  hitemp: 0,
-  icon: "cloudy",
-}
-
-function range(weather){
-  return weather.lowtemp.toString() + "°F ~ " + weather.hitemp.toString() + "°F"
-}
-
+var request = new XMLHttpRequest()
+var city = document.getElementById("city").value
+var state = document.getElementById("state").value
+var button = document.getElementById('refresh')
 var date = document.getElementById("todaysdate")
-date.textContent = new Date().long()
-document.getElementById("temp1").textContent = range(day1)
-document.getElementById("temp2").textContent = range(day2)
-document.getElementById("temp3").textContent = range(day3)
-
-document.getElementById("date1").textContent = day1.time
-document.getElementById("date2").textContent = day2.time
-document.getElementById("date3").textContent = day3.time
 
 
-button2.addEventListener("click", function(){
+if (document.getElementById("city").value = ''){
+  var city = "Flushing"
+  }
+if (document.getElementById("state").value = ''){
+  var state = "NY"
+}
+
+request.open("GET","http://api.wunderground.com/api/a4467134470da9d5/forecast/q/" + state + '/' + city + ".json")
+request.send()
+
+request.addEventListener("load", function() {
+  var response = JSON.parse(request.responseText)
+
+  var day1 = {
+    time: new Date().short(),
+    lowtemp: response.forecast.simpleforecast.forecastday[0].low.fahrenheit,
+    hitemp: response.forecast.simpleforecast.forecastday[0].high.fahrenheit,
+    icon: response.forecast.simpleforecast.forecastday[0].icon_url,
+  }
+
+  var day2 = {
+    time: new Date().addDays(1).short(),
+    lowtemp: response.forecast.simpleforecast.forecastday[1].low.fahrenheit,
+    hitemp: response.forecast.simpleforecast.forecastday[1].high.fahrenheit,
+    icon: response.forecast.simpleforecast.forecastday[1].icon_url,
+  }
+
+  var day3 = {
+    time: new Date().addDays(2).short(),
+    lowtemp: response.forecast.simpleforecast.forecastday[2].low.fahrenheit,
+    hitemp: response.forecast.simpleforecast.forecastday[2].high.fahrenheit,
+    icon: response.forecast.simpleforecast.forecastday[2].icon_url,
+  }
+
+  function range(weather) {
+    return weather.lowtemp.toString() + "°F ~ " + weather.hitemp.toString() + "°F"
+  }
+
+  var days = [day1, day2, day3]
+  var dates = [document.getElementById("date1"), document.getElementById("date2"), document.getElementById("date3")]
+  var temps = [document.getElementById("temp1"), document.getElementById("temp2"), document.getElementById("temp3")]
+  var icons = [document.getElementById("img1"), document.getElementById("img2"), document.getElementById("img3")]
+
   date.textContent = new Date().long()
 
-  document.getElementById("temp1").textContent = range(day1)
-  document.getElementById("temp2").textContent = range(day2)
-  document.getElementById("temp3").textContent = range(day3)
+  var x = 0
 
-  document.getElementById("date1").textContent = day1.time
-  document.getElementById("date2").textContent = day2.time
-  document.getElementById("date3").textContent = day3.time
+  while (x < days.length) {
+    temps[x].textContent = range(days[x])
+    dates[x].textContent = days[x].time
+    icons[x].src = days[x].icon
+    x++
+  }
 })
+
+button.addEventListener("click", function(){
+  date.textContent = new Date().long()
+  city = document.getElementById("city").value
+  state = document.getElementById("state").value
+  var newrequest = new XMLHttpRequest()
+  newrequest.open("GET","http://api.wunderground.com/api/a4467134470da9d5/forecast/q/" + state + '/' + city + ".json")
+  newrequest.send()
+
+  newrequest.addEventListener("load", function() {
+    var newresponse = JSON.parse(newrequest.responseText)
+    var day1 = {
+      time: new Date().short(),
+      lowtemp: newresponse.forecast.simpleforecast.forecastday[0].low.fahrenheit,
+      hitemp: newresponse.forecast.simpleforecast.forecastday[0].high.fahrenheit,
+      icon: newresponse.forecast.simpleforecast.forecastday[0].icon_url,
+    }
+
+    var day2 = {
+      time: new Date().addDays(1).short(),
+      lowtemp: newresponse.forecast.simpleforecast.forecastday[1].low.fahrenheit,
+      hitemp: newresponse.forecast.simpleforecast.forecastday[1].high.fahrenheit,
+      icon: newresponse.forecast.simpleforecast.forecastday[1].icon_url,
+    }
+
+    var day3 = {
+      time: new Date().addDays(2).short(),
+      lowtemp: newresponse.forecast.simpleforecast.forecastday[2].low.fahrenheit,
+      hitemp: newresponse.forecast.simpleforecast.forecastday[2].high.fahrenheit,
+      icon: newresponse.forecast.simpleforecast.forecastday[2].icon_url,
+    }
+
+    function range(weather) {
+      return weather.lowtemp.toString() + "°F ~ " + weather.hitemp.toString() + "°F"
+    }
+
+
+    var days = [day1, day2, day3]
+    var dates = [document.getElementById("date1"), document.getElementById("date2"), document.getElementById("date3")]
+    var temps = [document.getElementById("temp1"), document.getElementById("temp2"), document.getElementById("temp3")]
+    var icons = [document.getElementById("img1"), document.getElementById("img2"), document.getElementById("img3")]
+
+    var x = 0
+    while (x < days.length) {
+      temps[x].textContent = range(days[x])
+      dates[x].textContent = days[x].time
+      icons[x].src = days[x].icon
+      x++
+    }
+  })
+})
+
 
 /*var Person = class {
   fullname(){
