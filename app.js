@@ -25,25 +25,25 @@ request.addEventListener("load", function() {
     time: new Date().short(),
     lowtemp: response.forecast.simpleforecast.forecastday[0].low.fahrenheit,
     hitemp: response.forecast.simpleforecast.forecastday[0].high.fahrenheit,
-    icon: response.forecast.simpleforecast.forecastday[0].icon_url,
+    icon: response.forecast.simpleforecast.forecastday[0].icon,
   }
 
   var day2 = {
     time: new Date().addDays(1).short(),
     lowtemp: response.forecast.simpleforecast.forecastday[1].low.fahrenheit,
     hitemp: response.forecast.simpleforecast.forecastday[1].high.fahrenheit,
-    icon: response.forecast.simpleforecast.forecastday[1].icon_url,
+    icon: response.forecast.simpleforecast.forecastday[1].icon,
   }
 
   var day3 = {
     time: new Date().addDays(2).short(),
     lowtemp: response.forecast.simpleforecast.forecastday[2].low.fahrenheit,
     hitemp: response.forecast.simpleforecast.forecastday[2].high.fahrenheit,
-    icon: response.forecast.simpleforecast.forecastday[2].icon_url,
+    icon: response.forecast.simpleforecast.forecastday[2].icon,
   }
 
   function range(weather) {
-    return weather.lowtemp.toString() + "°F ~ " + weather.hitemp.toString() + "°F"
+    return weather.lowtemp + "°F ~ " + weather.hitemp + "°F"
   }
 
   var days = [day1, day2, day3]
@@ -53,14 +53,12 @@ request.addEventListener("load", function() {
 
   date.textContent = new Date().long()
 
-  var x = 0
+  days.forEach(function(element, index){
+    temps[index].textContent = range(element)
+    dates[index].textContent = element.time
+    icons[index].src = "http://icons.wxug.com/i/c/i/" + element.icon + ".gif"
 
-  while (x < days.length) {
-    temps[x].textContent = range(days[x])
-    dates[x].textContent = days[x].time
-    icons[x].src = days[x].icon
-    x++
-  }
+  })
 })
 
 button.addEventListener("click", function(){
@@ -77,25 +75,25 @@ button.addEventListener("click", function(){
       time: new Date().short(),
       lowtemp: newresponse.forecast.simpleforecast.forecastday[0].low.fahrenheit,
       hitemp: newresponse.forecast.simpleforecast.forecastday[0].high.fahrenheit,
-      icon: newresponse.forecast.simpleforecast.forecastday[0].icon_url,
+      icon: newresponse.forecast.simpleforecast.forecastday[0].icon,
     }
 
     var day2 = {
       time: new Date().addDays(1).short(),
       lowtemp: newresponse.forecast.simpleforecast.forecastday[1].low.fahrenheit,
       hitemp: newresponse.forecast.simpleforecast.forecastday[1].high.fahrenheit,
-      icon: newresponse.forecast.simpleforecast.forecastday[1].icon_url,
+      icon: newresponse.forecast.simpleforecast.forecastday[1].icon,
     }
 
     var day3 = {
       time: new Date().addDays(2).short(),
       lowtemp: newresponse.forecast.simpleforecast.forecastday[2].low.fahrenheit,
       hitemp: newresponse.forecast.simpleforecast.forecastday[2].high.fahrenheit,
-      icon: newresponse.forecast.simpleforecast.forecastday[2].icon_url,
+      icon: newresponse.forecast.simpleforecast.forecastday[2].icon,
     }
 
     function range(weather) {
-      return weather.lowtemp.toString() + "°F ~ " + weather.hitemp.toString() + "°F"
+      return weather.lowtemp + "°F ~ " + weather.hitemp + "°F"
     }
 
 
@@ -104,13 +102,11 @@ button.addEventListener("click", function(){
     var temps = [document.getElementById("temp1"), document.getElementById("temp2"), document.getElementById("temp3")]
     var icons = [document.getElementById("img1"), document.getElementById("img2"), document.getElementById("img3")]
 
-    var x = 0
-    while (x < days.length) {
-      temps[x].textContent = range(days[x])
-      dates[x].textContent = days[x].time
-      icons[x].src = days[x].icon
-      x++
-    }
+    days.forEach(function(element, index){
+      temps[index].textContent = range(element)
+      dates[index].textContent = element.time
+      icons[index].src = "http://icons.wxug.com/i/c/i/" + element.icon + ".gif"
+    })
   })
 })
 
