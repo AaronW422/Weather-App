@@ -1,91 +1,91 @@
 <!DOCTYPE HTML>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <style>
-      body {
-        background-color: #2dbfff;
+  <html>
+    <head>
+      <meta charset="UTF-8">
+      <style>
+        body {
+          background-color: #2dbfff;
 
-      }
+        }
 
-      h1 {
-        display: block;
-        font-family: Helvetica;
-        font-size: 80px;
-      }
+        h1 {
+          display: block;
+          font-family: Helvetica;
+          font-size: 80px;
+        }
 
-      div {
-        display: flex;
-        font-family: Helvetica;
-        padding: 10px;
-        font-size: 30px;
-        align-items: center;
-        justify-content: center;
-      }
+        div {
+          display: flex;
+          font-family: Helvetica;
+          padding: 10px;
+          font-size: 30px;
+          align-items: center;
+          justify-content: center;
+        }
 
-      div.weather {
-        width: 600px;
-        color: yellow;
-        border: 2px solid black;
-        border-radius: 10px;
-        margin-top: 20px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+        div.weather {
+          width: 600px;
+          color: yellow;
+          border: 2px solid black;
+          border-radius: 10px;
+          margin-top: 20px;
+          margin-left: auto;
+          margin-right: auto;
+        }
 
-      div.text {
-        width: 200px;
-      }
+        div.text {
+          width: 200px;
+        }
 
-      button {
-        margin: auto;
-      }
+        button {
+          margin: auto;
+        }
 
-    </style>
-    <title>
-      Weather App
-    </title>
-  </head>
+      </style>
+      <title>
+        Weather App
+      </title>
+    </head>
 
-  <body>
-    <header>
-      <div id="todaysdate"></div>
-      <div id="location">
-        <input type="text" value="Flushing" style="margin-right:20px" id = "city"/>
-        <input type="text" value="NY" id = "state" />
+    <body>
+      <header>
+        <div id="todaysdate"></div>
+        <div id="location">
+          <input type="text" value="Flushing" style="margin-right:20px" id = "city"/>
+          <input type="text" value="NY" id = "state" />
+        </div>
+      </header>
+
+      <div class= "weather">
+        <div class = "text" id = "date1"></div>
+        <div>
+          <div><img src = "" width = 100px id = "img1"/></div>
+          <div class = "text" id = "temp1"></div>
+        </div>
       </div>
-    </header>
 
-    <div class= "weather">
-      <div class = "text" id = "date1"></div>
+      <div class="weather">
+        <div class = "text" id = "date2"></div>
+        <div>
+          <div><img src = "" width = 100px id = "img2"/></div>
+          <div class = "text" id = "temp2"></div>
+        </div>
+      </div>
+
+      <div class="weather">
+        <div class = "text" id = "date3"></div>
+        <div>
+          <div><img src = "" width = 100px id = "img3"/></div>
+          <div class = "text" id = "temp3"></div>
+        </div>
+      </div>
+
       <div>
-        <div><img src = "" width = 100px id = "img1"/></div>
-        <div class = "text" id = "temp1"></div>
+        <button id = "refresh">Refresh</button>
       </div>
-    </div>
 
-    <div class="weather">
-      <div class = "text" id = "date2"></div>
-      <div>
-        <div><img src = "" width = 100px id = "img2"/></div>
-        <div class = "text" id = "temp2"></div>
-      </div>
-    </div>
-
-    <div class="weather">
-      <div class = "text" id = "date3"></div>
-      <div>
-        <div><img src = "" width = 100px id = "img3"/></div>
-        <div class = "text" id = "temp3"></div>
-      </div>
-    </div>
-
-    <div>
-      <button id = "refresh">Refresh</button>
-    </div>
-    
-    <script src = "Sugar.js"></script>
-    <script src = "app.js"></script>
-  </body>
+      <script src = "Sugar.js"></script>
+      <script src = "app.js"></script>
+    </body>
 
 </html>
